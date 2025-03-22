@@ -4,7 +4,7 @@ using namespace std;           //헤더 파일 포함
 int reverse(int n);            // 선언
 
 int main() {                   // 프로그램의 시작점
-    int num;
+    int num;                   // 사용자 입력 값을 저장할 변수
     cout << "Enter a number: ";                    // 입력
     cin >> num;                                    // 사용자가 입력한 값을 num에 저장
     cout << "Reversed: " << reverse(num) << endl;  // 출력
