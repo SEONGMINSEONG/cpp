@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream>                 // 방법 5 함수 선언 in 헤더 파일 함수 정의, 호출 in 소스 파일
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
