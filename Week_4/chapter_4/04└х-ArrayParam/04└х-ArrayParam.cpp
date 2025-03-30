@@ -12,7 +12,7 @@ char findMaxChar(char a[]) {
 		if (maxChar < a[i]) maxChar = a[i];
 	return maxChar;
 }
-void main() {
+int main() {
 	int arr[10] = { 3, 24, 82, 12, 34, 7, 53, 17, 26, 51 };
 	char str[] = "geme over !";
 	printf("max val  = %d\n", findMaxValue(arr, 10));
