@@ -1,12 +1,6 @@
 #include <iostream>
+#include "MyTime.h"
 
-// MyTime 구조체 선언
-struct MyTime {
-    int hours;    // 시
-    int minutes;  // 분
-    int seconds;  // 초
-    int millis;   // 밀리초
-};
 
 // 두 시간을 더하는 함수 구현 (포인터 방식)
 void addTime(MyTime t1, MyTime t2, MyTime* pt) {
