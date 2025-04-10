@@ -7,6 +7,7 @@ struct MyTime {
     int minutes;  // 분
     int seconds;  // 초
     int millis;   // 밀리초
+    
 };
 
 // 함수 선언 (포인터 방식)
