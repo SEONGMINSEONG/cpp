@@ -1,0 +1,9 @@
+apple 사과
+book 책
+run 달리다
+man 남자
+word 단어
+egg 달걀
+score 점수
+sun 태양
+fish 물고기
