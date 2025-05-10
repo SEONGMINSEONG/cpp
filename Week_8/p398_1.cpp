@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstring> 
+#include <cstring>
 
 class Sample {
 private:
@@ -8,8 +8,9 @@ public:
     static int count;
     Sample() {
         count++;
+        name = nullptr; // 기본 생성 시 name을 nullptr로 초기화
     }
-    Sample(const char * name) {
+    Sample(const char *name) {
         count++;
         this->name = new char[strlen(name) + 1];
         strcpy(this->name, name);
@@ -37,6 +38,9 @@ int main() {
     Sample::printCount();
 
     Sample b(a);
+    Sample::printCount();
+
+    Sample c; // 기본 생성자 호출
     Sample::printCount();
 
     return 0;
