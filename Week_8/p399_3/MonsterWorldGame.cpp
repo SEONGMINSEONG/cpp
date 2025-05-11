@@ -8,13 +8,13 @@ int main() {
     int w = 16, h = 8;
     MonsterWorld game(w, h);
 
-    Monster m("몬스터", "*", rand() % w, rand() % h);
+    Monster m("몬스터", "*", rand() % w, rand() % h,80);
     game.add(m);
-    Monster m1("도깨비", "#", rand() % w, rand() % h);
+    Monster m1("도깨비", "#", rand() % w, rand() % h,20);
     game.add(m1);
-    Monster m2("별그대", "&", rand() % w, rand() % h);
+    Monster m2("별그대", "&", rand() % w, rand() % h,60);
     game.add(m2);
-    Monster m3("고스트", "%", rand() % w, rand() % h);
+    Monster m3("고스트", "%", rand() % w, rand() % h,40);
     game.add(m3);
 
     game.play(500, 50);

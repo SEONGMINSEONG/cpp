@@ -1,6 +1,7 @@
 #pragma once
 #include "Canvas.h"
 #include "Monster.h"
+#include "Matrix.h"
 #include <unistd.h>
 #include <iostream>
 #define DIM 40
@@ -13,7 +14,7 @@ class MonsterWorld {
     Canvas canvas;
 
     int& Map(int x, int y) { return map[y][x]; }
-    bool isDone() { return countItems() == 0; }
+    bool isDone() { return countItems() == 0 || nMon == 0; }
     int countItems() {
         int nItems = 0;
         for (int y = 0; y < yMax; y++)
@@ -33,9 +34,22 @@ class MonsterWorld {
 
         std::cerr << " 총 이동 횟수 = " << nMove << std::endl;
         std::cerr << " 남은 아이템 수 = " << countItems() << std::endl;
+        std::cerr << " 살아있는 몬스터 수 = " << nMon << std::endl;
         for (int i = 0; i < nMon; i++)
-            mon[i].print();
+            std::cerr << "\t" << mon[i].getName() << mon[i].getIcon() << ": 아이템=" << mon[i].getItemCount() << ", 에너지=" << mon[i].getEnergyCount() << std::endl;
     }
+
+    void checkStarvation() {
+        for (int i = 0; i < nMon; ++i) {
+            if (mon[i].getEnergyCount() <= 0) {
+                std::cerr << mon[i].getName() << "(" << mon[i].getIcon() << ") 몬스터가 굶어 죽었습니다!" << std::endl;
+                mon[i] = mon[nMon - 1];
+                nMon--;
+                i--;
+            }
+        }
+    }
+
 public:
     MonsterWorld(int w, int h) : canvas(w, h), xMax(w), yMax(h) {
         nMon = 0;
@@ -59,9 +73,14 @@ public:
             for (int k = 0; k < nMon; k++)
                 mon[k].move(map, xMax, yMax);
             nMove++;
+            checkStarvation();
             print();
             if (isDone()) break;
             usleep(wait * 1000);
         }
+    }
+
+    int getMonsterCount() const {
+        return Monster::getMonsterCount();
     }
 };
