@@ -8,6 +8,7 @@
 #define MAXMONS 5
 
 class MonsterWorld {
+private:
     int map[DIM][DIM];
     int xMax, yMax, nMon, nMove;
     Monster mon[MAXMONS];
