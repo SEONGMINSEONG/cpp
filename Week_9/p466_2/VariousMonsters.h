@@ -1,3 +1,4 @@
+// VariousMonsters.h
 #pragma once
 
 #include "Monster.h"
@@ -43,6 +44,7 @@ public:
 class Jiangshi : public Monster {
 protected:
     bool bHori;
+    static int moveCount; // JiangshiBoy, JiangshiGirl 이동 카운터
 
 public:
     Jiangshi(string n = "Jiangshi", string i = "%", int x = 0, int y = 0, bool bH = true)
@@ -56,8 +58,12 @@ public:
         else y += ((dir == 0) ? -jump : jump);
         clip(maxx, maxy);
         eat(map);
+        moveCount++; // JiangshiBoy, JiangshiGirl 이동 시 증가
     }
 };
+
+// Jiangshi의 정적 멤버 정의
+int Jiangshi::moveCount = 0;
 
 class Smombi : public Monster {
 public:
@@ -78,37 +84,44 @@ public:
 
 class Siangshi : public Jiangshi {
 private:
-    int moveCount;
-    static const int CHANGE_INTERVAL = 5;
+    bool canMoveFreely;
+    static const int MOVE_THRESHOLD = 150;
 
 public:
     Siangshi(string n = "Siangshi", string i = "@", int x = 0, int y = 0, bool bH = true)
-        : Jiangshi(n, i, x, y, bH), moveCount(0) {}
+        : Jiangshi(n, i, x, y, bH), canMoveFreely(false) {}
     ~Siangshi() override { cout << " Siangshi"; }
 
     void move(int** map, int maxx, int maxy) override {
-        moveCount++;
-        if (moveCount >= CHANGE_INTERVAL) {
-            bHori = !bHori;
-            moveCount = 0;
+        if (!canMoveFreely && moveCount >= MOVE_THRESHOLD) {
+            canMoveFreely = true;
+            cout << "Siangshi can now move freely at Jiangshi move count " << moveCount << endl;
         }
-        Jiangshi::move(map, maxx, maxy);
+        if (canMoveFreely) {
+            int dir = rand() % 2;
+            int jump = rand() % 2 + 1;
+            if (bHori) x += ((dir == 0) ? -jump : jump);
+            else y += ((dir == 0) ? -jump : jump);
+            clip(maxx, maxy);
+            eat(map);
+            bHori = !bHori; 
+        }
     }
 };
 
-class Seong : public KGhost {
+class Seong : public Jiangshi {
 public:
-    Seong(string n = "Seong", string i = "^", int x = 0, int y = 0)
-        : KGhost(n, i, x, y) {}
+    Seong(string n = "Seong", string i = "^", int x = 0, int y = 0, bool bH = true)
+        : Jiangshi(n, i, x, y, bH) {}
     ~Seong() override { cout << " Seong"; }
 
     void move(int** map, int maxx, int maxy) override {
-        int dir = rand() % 4;
-        if (dir == 0) x += 2; // 오른쪽 2칸
-        else if (dir == 1) x -= 2; // 왼쪽 2칸
-        else if (dir == 2) y += 2; // 아래 2칸
-        else y -= 2; // 위 2칸
+        int dir = rand() % 2;
+        int jump = 3;
+        if (bHori) x += (dir == 0) ? -jump : jump;
+        else y += (dir == 0) ? -jump : jump;
         clip(maxx, maxy);
         eat(map);
+        
     }
 };

@@ -5,8 +5,8 @@
 using namespace std;
 
 class Canvas {
-	string line[MAXLINES];	// 화면 출력을 위한 문자열
-	int xMax, yMax;		// 맵의 크기
+	string line[MAXLINES];	
+	int xMax, yMax;		
 public:
 	Canvas(int nx = 10, int ny = 10) : xMax(nx), yMax(ny) {
 		for (int y = 0; y < yMax; y++)
@@ -16,7 +16,7 @@ public:
 		if (x >= 0 && y >= 0 && x<xMax && y<yMax)
 			line[y].replace(x * 2, 2, val);
 	}
-	void clear(string val = ". ") {		// 디폴트 매개변수: 공백 2개
+	void clear(string val = ". ") {		
 		for (int y = 0; y < yMax; y++)
 			for (int x = 0; x < xMax; x++)
 				draw(x, y, val);

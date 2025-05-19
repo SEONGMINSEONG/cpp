@@ -5,7 +5,7 @@ protected:
     int x, y;
 public:
     Point(int xx, int yy) : x(xx), y(yy) {}
-    virtual void draw() { // virtual 키워드 추가 (다형성 지원을 위해)
+    virtual void draw() { // virtual 키워드 추가 (다형성 지원을 위해) 가상 함수
         std::cout << "(" << x << "," << y << ")에 점을 그려라.\n";
     }
 };

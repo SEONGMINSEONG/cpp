@@ -33,7 +33,7 @@ class MonsterWorld {
                     canvas.draw(x, y, "O");
         for (int i = 0; i < nMon; i++)
             pMon[i]->draw(canvas);
-        cout << "\033[2J\033[H"; // 화면 지우고 커서 상단으로
+        cout << "\033[2J\033[H"; 
         canvas.print("[ Monster World (All Monsters Moving) ]");
         cout << "Total Moves = " << nMove << endl;
         cout << "Remaining Items = " << countItems() << endl;
