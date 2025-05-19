@@ -3,7 +3,6 @@
  #include <ctime>
  #include <iostream>
  
-
  int main() {
   srand((unsigned int)time(NULL));
   int w = 16, h = 8;
@@ -18,7 +17,6 @@
   game.add(m2);
   Monster m3("고스트", "%", rand() % w, rand() % h, 5);
   game.add(m3);
- 
 
   game.play(500, 50);
   printf("------게임 종료-------------------\n");
